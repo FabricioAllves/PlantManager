@@ -1,10 +1,13 @@
 import React from 'react'
+import theme from './src/theme';
 import { Welcome } from './src/pages/Welcome'
-
+import { ThemeProvider } from 'styled-components/native';
 
 export default function App(){
   return(
-    <Welcome />
+    <ThemeProvider theme={theme}>
+      <Welcome />
+    </ThemeProvider>
   )
 }
 
