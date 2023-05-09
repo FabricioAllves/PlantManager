@@ -1,35 +1,32 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
 
 import wateringImg from '../../assets/watering.png'
-import { 
+import { Button } from '../../components/Button';
+import {
   Container,
   Title,
   SubTitle,
-  Button
+  LogoImg,
 } from './styles';
 
 export function Welcome() {
   return (
     <Container>
       <Title>
-        Gerencie 
-        suas plantas de 
-        forma fácil
+        Gerencie {'\n'}
+        suas plantas{'\n'}
+        de forma fácil
       </Title>
 
-      <Image source={wateringImg}/>
+        <LogoImg source={wateringImg} />
 
       <SubTitle>
         Não esqueça mais de regar suas plantas.
         Nós cuidamos de lembrar você sempre que precisar.
       </SubTitle>
 
-      <Button>
-        <Text>
-          {'>'}
-        </Text>
-      </Button>
+      <Button title='>'/>
+
     </Container>
   );
 }
