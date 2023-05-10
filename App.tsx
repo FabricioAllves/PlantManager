@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {fontsLoaded ? <Loading /> : <Welcome />}
+      {!fontsLoaded ? <Loading /> : <Welcome />}
     </ThemeProvider>
   )
 }

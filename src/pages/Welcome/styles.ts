@@ -3,16 +3,23 @@ import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
+`;
+
+export const Wrapper = styled.View`
+  flex: 1;
   justify-content: space-around;
   align-items: center;
+  padding: 0 20px 0 20px
 `;
 
 export const Title = styled.Text`
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
   text-align: center;
   color: ${({theme}) => theme.Colors.heading};
+  font-family: ${({ theme }) => theme.FONTS.heading};
   margin-top: 38px;
+  line-height: 34px;
 `;
 
 export const SubTitle = styled.Text`
@@ -20,6 +27,7 @@ export const SubTitle = styled.Text`
   font-size: 18px;
   padding: 0 20px 0 20px;
   color: ${({theme}) => theme.Colors.heading};
+  font-family: ${({ theme }) => theme.FONTS.text};
 `;
 
 export const LogoImg = styled.Image`
@@ -36,10 +44,4 @@ export const ButtonT = styled.TouchableOpacity`
   height: 56px;
   width: 56px;
 `;
-
-export const ButtonText = styled.Text`
-  color: ${({theme}) => theme.Colors.white};
-  font-size: 24px;
-`;
-
 
