@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native'
 
 import {
   Container,
@@ -13,6 +14,8 @@ import { Feather } from '@expo/vector-icons'
 import wateringImg from '../../assets/watering.png'
 
 export function Welcome() {
+  const { navigate } = useNavigation()
+
   return (
     <Container>
       <Wrapper>
@@ -29,7 +32,7 @@ export function Welcome() {
           Nós cuidamos de lembrar você sempre que precisar.
         </SubTitle>
 
-        <ButtonT activeOpacity={0.8}>
+        <ButtonT activeOpacity={0.8} onPress={() => navigate('UserIdentification')}>
           <Feather name='chevron-right' style={{ fontSize: 32, color: 'white' }} />
         </ButtonT>
       </Wrapper>
