@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `;
 
@@ -25,6 +25,21 @@ export const SubTitle = styled.Text`
 export const LogoImg = styled.Image`
   width: 292px;
   height: 284px;
+`;
+
+export const ButtonT = styled.TouchableOpacity`
+  background-color: ${({theme}) => theme.Colors.green};
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  height: 56px;
+  width: 56px;
+`;
+
+export const ButtonText = styled.Text`
+  color: ${({theme}) => theme.Colors.white};
+  font-size: 24px;
 `;
 
 

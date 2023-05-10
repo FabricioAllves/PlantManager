@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import wateringImg from '../../assets/watering.png'
-import { Button } from '../../components/Button';
 import {
   Container,
   Title,
   SubTitle,
   LogoImg,
+  ButtonT,
+  ButtonText
 } from './styles';
+
+import { Feather } from '@expo/vector-icons'
+import wateringImg from '../../assets/watering.png'
 
 export function Welcome() {
   return (
@@ -18,14 +21,18 @@ export function Welcome() {
         de forma fácil
       </Title>
 
-        <LogoImg source={wateringImg} />
+      <LogoImg source={wateringImg} resizeMode='contain' />
 
       <SubTitle>
         Não esqueça mais de regar suas plantas.
         Nós cuidamos de lembrar você sempre que precisar.
       </SubTitle>
 
-      <Button title='>'/>
+      <ButtonT activeOpacity={0.8}>
+        <ButtonText>
+          <Feather name='chevron-right' style={{fontSize:32}}/>
+        </ButtonText>
+      </ButtonT>
 
     </Container>
   );

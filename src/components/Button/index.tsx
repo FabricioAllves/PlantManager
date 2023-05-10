@@ -3,7 +3,7 @@ import { TouchableOpacityProps } from 'react-native';
 
 
 
-type ButtonProps = TouchableOpacityProps &{
+type ButtonProps = TouchableOpacityProps & {
   title: string
 }
 
@@ -12,12 +12,12 @@ import {
   ButtonText
 } from './styles';
 
-export function Button({title, ...rest}:ButtonProps){
+export function Button({ title, ...rest }: ButtonProps) {
   return (
     <ButtonT activeOpacity={0.8} {...rest}>
-        <ButtonText>
-          {title}
-        </ButtonText>
-      </ButtonT>
+      <ButtonText>
+        {title}
+      </ButtonText>
+    </ButtonT>
   );
 }
