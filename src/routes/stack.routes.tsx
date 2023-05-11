@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Welcome } from '../pages/Welcome';
 import { UserIdentification } from '../pages/UserIdentification';
 import { Confirmation } from '../pages/Confirmation';
+import { PlantSelect } from '../pages/PlantSelect';
 
 
 const { Navigator, Screen } = createNativeStackNavigator()
@@ -14,6 +15,7 @@ export function AppRoutes() {
       <Screen  name='Welcome' component={Welcome}/>
       <Screen  name='UserIdentification' component={UserIdentification}/>
       <Screen  name='Confirmation' component={Confirmation}/>
+      <Screen  name='PlantSelect' component={PlantSelect}/>
     </Navigator>
   );
 }

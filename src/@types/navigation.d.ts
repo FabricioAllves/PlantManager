@@ -4,6 +4,7 @@ export declare global {
       Wellcome: undefined;
       UserIdentification: undefined;
       Confirmation: undefined;
+      PlantSelect: undefined;
     }
   }
 }
