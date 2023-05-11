@@ -12,10 +12,12 @@ export const Container = styled(RectButton)<Activee>`
   justify-content: center;
   align-items: center;
   border-radius: 12px;
+  margin-right: 5px;
+
 `;
 
 export const Text = styled.Text<Activee>`
-  color:  ${({active, theme}) => active ? theme.Colors.green : theme.Colors.heading};
+  color:  ${({active, theme}) => active ? theme.Colors.green_dark : theme.Colors.heading};
   font-family: ${({active, theme}) => active ? theme.FONTS.heading : theme.FONTS.text};
 `;
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native'
 import { RectButtonProps } from 'react-native-gesture-handler'
 
 
@@ -14,12 +15,14 @@ interface EnviromentButtonProps extends RectButtonProps {
 
 export function EnviromentButton({ title, active = false, ...rest }: EnviromentButtonProps) {
   return (
-    <Container active={active}
-      {...rest}
-    >
-      <Text active={active}>
-        {title}
-      </Text>
-    </Container>
+
+      <Container active={active}
+        {...rest}
+      >
+        <Text active={active}>
+          {title}
+        </Text>
+      </Container>
+
   );
 }
