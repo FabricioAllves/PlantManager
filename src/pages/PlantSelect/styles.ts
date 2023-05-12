@@ -22,5 +22,10 @@ export const SubTitle = styled.Text`
   color: ${({ theme }) => theme.Colors.heading};
   font-size: 17px;
   line-height: 20px;
-  
+`;
+
+export const Plants = styled.View`
+  flex: 1;
+  padding: 0 32px;
+  justify-content: center;
 `;

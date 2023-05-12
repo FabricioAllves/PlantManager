@@ -12,7 +12,7 @@ export const Container = styled(RectButton)<Activee>`
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-  margin-right: 5px;
+  margin: 0 5px;
 
 `;
 
