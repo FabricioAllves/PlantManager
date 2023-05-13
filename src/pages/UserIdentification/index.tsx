@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Platform, Keyboard } from 'react-native';
+import { Platform, Keyboard, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Button } from '../../components/Button';
 
@@ -36,6 +37,14 @@ export function UserIdentification() {
     setName(value)
   }
 
+  async function handleSubmit(){
+    if(!name)
+    return Alert.alert("Me diz como chamar você 🥲");
+
+    await AsyncStorage.setItem("@plantmanager:user", name)
+    navigate('Confirmation')
+  }
+
   return (
     <Container>
       <Content
@@ -60,7 +69,7 @@ export function UserIdentification() {
             />
 
             <Footer>
-              <Button title='Confirmar' onPress={() => navigate('Confirmation')} />
+              <Button title='Confirmar' onPress={handleSubmit} />
             </Footer>
           </Form>
         </OutSide>

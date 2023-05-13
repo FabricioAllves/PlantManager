@@ -5,6 +5,7 @@ export declare global {
       UserIdentification: undefined;
       Confirmation: undefined;
       PlantSelect: undefined;
+      PlantSave: {};
     }
   }
 }
