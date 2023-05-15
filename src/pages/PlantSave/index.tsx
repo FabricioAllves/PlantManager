@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { useRoute } from '@react-navigation/native'
+import { useRoute, useNavigation } from '@react-navigation/native'
 import { getBottomSpace } from 'react-native-iphone-x-helper';
-import DateTimePicker, { Event } from '@react-native-community/datetimepicker'
+import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
+
 import { format, isBefore } from 'date-fns'
+import { SvgFromUri } from 'react-native-svg';
+import { PlantDTO, savePlant } from '../../DTOS_Storage/PlantDTO';
 
 import {
   Container,
@@ -17,33 +20,24 @@ import {
   ButtonCalendar,
   ButtonCalendarText
 } from './styles';
-import { SvgFromUri } from 'react-native-svg';
 
 import waterdrop from '../../assets/waterdrop.png'
 import { Button } from '../../components/Button';
 import { Alert, Platform } from 'react-native';
 
 interface Params {
-  plant: {
-    id: string;
-    name: string;
-    about: string;
-    water_tips: string,
-    photo: string;
-    environments: [string];
-    frequency: {
-      times: number;
-      repeat_every: string;
-    }
-  }
+  plant: PlantDTO
 }
 
 export function PlantSave() {
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(Platform.OS === 'ios');
 
+  const {navigate} = useNavigation();
+
   const route = useRoute();
   const { plant } = route.params as Params
+
 
   function handleChangeTime(event: Event, dateTime: Date | undefined) {
     if (Platform.OS === 'android') {
@@ -52,7 +46,7 @@ export function PlantSave() {
     //          é antes ? (date a validar, data atual) Ex. data selecionada e posterior a data atual?
     if (dateTime && isBefore(dateTime, new Date())) {
       setSelectedDateTime(new Date()) //data/hora atual
-      return Alert.alert('Escolha uma hora no futuro! ⏲️')
+      return Alert.alert('Escolha uma hora no futuro!<br> ⏲️')
     }
 
     if (dateTime) {
@@ -60,9 +54,28 @@ export function PlantSave() {
     }
   }
 
-  function handleOpenDateTimePickerForAndroid(){
+  function handleOpenDateTimePickerForAndroid() {
     //                  invertendo a logica.... Ex....se antes era falso, agora passa a ser verdadeiro
     setShowDatePicker(oldState => !oldState)
+  }
+
+  async function handleSave() {
+    try {
+      await savePlant({
+        ...plant,
+        dateTimeNotification: selectedDateTime
+      });
+
+      navigate('Confirmation', {
+        title: 'Tudo certo',
+        subtitle: 'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha com muito cuidado.',
+        buttonTitle: 'Muito Obrigado',
+        icon: 'hug',
+        nextScreen: 'MyPlants',
+      });
+    } catch {
+      Alert.alert('Não foi possivel salvar.')
+    }
   }
 
   return (
@@ -114,7 +127,7 @@ export function PlantSave() {
 
         <Button
           title='Cadastrar Planta'
-          onPress={() => { }}
+          onPress={handleSave}
         />
 
       </Controller>
