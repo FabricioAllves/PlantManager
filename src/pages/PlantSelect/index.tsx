@@ -17,7 +17,7 @@ import {
   SubTitle,
   Plants
 } from './styles';
-import { PlantDTO } from '../../DTOS_Storage/PlantDTO';
+import { PlantProps } from '../../DTOS_Storage/PlantDTO';
 
 
 interface environmentProps {
@@ -27,8 +27,8 @@ interface environmentProps {
 
 export function PlantSelect() {
   const [environments, setEnvironments] = useState<environmentProps[]>([]);
-  const [plants, setPlants] = useState<PlantDTO[]>([]);
-  const [filteredPlants, setFilteredPlants] = useState<PlantDTO[]>([]);
+  const [plants, setPlants] = useState<PlantProps[]>([]);
+  const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
   const [environmentSelected, setEnvironmentSelected] = useState('all');
   const [loading, setLoading] = useState(true)
 
@@ -77,7 +77,7 @@ export function PlantSelect() {
     fetchPlants()
   }
 
-  function handlePlantSelect(plant: PlantDTO) {
+  function handlePlantSelect(plant: PlantProps) {
     navigate('PlantSave', {plant})
   }
 

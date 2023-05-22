@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { format } from "date-fns";
 
-export interface PlantDTO {
+export interface PlantProps {
   id: string;
   name: string;
   about: string;
@@ -18,11 +18,11 @@ export interface PlantDTO {
 
 export interface StoragePlantProps {
   [id: string]: {
-    data: PlantDTO;
+    data: PlantProps;
   }
 }
 
-export async function savePlant(plant: PlantDTO): Promise<void> {
+export async function savePlant(plant: PlantProps): Promise<void> {
   try {
     const data = await AsyncStorage.getItem('@plantmanager:plants');
     const oldPlants = data ? (JSON.parse(data) as StoragePlantProps) : {};
@@ -40,7 +40,7 @@ export async function savePlant(plant: PlantDTO): Promise<void> {
   }
 }
 
-export async function loadPlant(): Promise<PlantDTO[]> {
+export async function loadPlant(): Promise<PlantProps[]> {
   try {
     const data = await AsyncStorage.getItem('@plantmanager:plants');
     const plants = data ? (JSON.parse(data) as StoragePlantProps) : {};
@@ -60,9 +60,21 @@ export async function loadPlant(): Promise<PlantDTO[]> {
         )
       )
 
-      return plantsSorted;
+    return plantsSorted;
 
   } catch (error) {
     throw new Error()
   }
+}
+
+export async function removePlant(id: string): Promise<void> {
+  const data = await AsyncStorage.getItem('@plantmanager:plants');
+  const plants = data ? JSON.parse(data) as StoragePlantProps : {};
+
+  delete plants[id]
+
+  await AsyncStorage.setItem(
+    '@plantmanager:plants',
+    JSON.stringify(plants)
+  );
 }

@@ -1,4 +1,4 @@
-import { PlantDTO } from "../DTOS_Storage/PlantDTO";
+import { PlantProps } from "../DTOS_Storage/PlantProps";
 
 export declare global {
   namespace ReactNavigation {
@@ -7,7 +7,7 @@ export declare global {
       UserIdentification: undefined;
       Confirmation: Object;
       PlantSelect: undefined;
-      PlantSave: {plant: PlantDTO};
+      PlantSave: {plant: PlantProps};
       MyPlants: undefined;
       nextScreen: String
     }

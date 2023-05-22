@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { getBottomSpace } from 'react-native-iphone-x-helper';
-import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
+import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 
 import { format, isBefore } from 'date-fns'
 import { SvgFromUri } from 'react-native-svg';
-import { PlantDTO, savePlant } from '../../DTOS_Storage/PlantDTO';
+import { PlantProps, savePlant } from '../../DTOS_Storage/PlantDTO';
 
 import {
   Container,
@@ -23,23 +23,23 @@ import {
 
 import waterdrop from '../../assets/waterdrop.png'
 import { Button } from '../../components/Button';
-import { Alert, Platform } from 'react-native';
+import { Alert, Platform, ScrollView } from 'react-native';
 
 interface Params {
-  plant: PlantDTO
+  plant: PlantProps
 }
 
 export function PlantSave() {
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(Platform.OS === 'ios');
 
-  const {navigate} = useNavigation();
+  const { navigate } = useNavigation();
 
   const route = useRoute();
   const { plant } = route.params as Params
 
 
-  function handleChangeTime(event: Event, dateTime: Date | undefined) {
+  function handleChangeTime(event: DateTimePickerEvent, dateTime: Date | undefined) {
     if (Platform.OS === 'android') {
       setShowDatePicker(oldState => !oldState)
     }
@@ -79,58 +79,63 @@ export function PlantSave() {
   }
 
   return (
-    <Container>
-      <PlantInfo>
-        <SvgFromUri uri={plant.photo} width={150} height={150} />
+    <ScrollView
+    showsVerticalScrollIndicator={false}
+    contentContainerStyle={{flex:1, justifyContent: 'space-between'}}
+    >
+      <Container>
+        <PlantInfo>
+          <SvgFromUri uri={plant.photo} width={150} height={150} />
 
-        <PlantName>
-          {plant.name}
-        </PlantName>
+          <PlantName>
+            {plant.name}
+          </PlantName>
 
-        <PlantAbout>
-          {plant.about}
-        </PlantAbout>
-      </PlantInfo>
+          <PlantAbout>
+            {plant.about}
+          </PlantAbout>
+        </PlantInfo>
 
-      <Controller style={{ paddingBottom: getBottomSpace() || 20 }}>
-        <TipContainer>
-          <TipImage source={waterdrop} />
+        <Controller style={{ paddingBottom: getBottomSpace() || 20 }}>
+          <TipContainer>
+            <TipImage source={waterdrop} />
 
-          <TipText>
-            {plant.water_tips}
-          </TipText>
-        </TipContainer>
+            <TipText>
+              {plant.water_tips}
+            </TipText>
+          </TipContainer>
 
-        <AlertLabel>
-          Escolha o melhor horário para ser lembrado
-        </AlertLabel>
+          <AlertLabel>
+            Escolha o melhor horário para ser lembrado
+          </AlertLabel>
 
-        {
-          showDatePicker && (
-            <DateTimePicker
-              value={selectedDateTime}
-              mode="time"
-              display="spinner"
-              onChange={handleChangeTime}
-            />
-          )}
+          {
+            showDatePicker && (
+              <DateTimePicker
+                value={selectedDateTime}
+                mode="time"
+                display="spinner"
+                onChange={handleChangeTime}
+              />
+            )}
 
-        {
-          Platform.OS === 'android' && (
-            <ButtonCalendar onPress={handleOpenDateTimePickerForAndroid}>
-              <ButtonCalendarText>
-                {`Mudar ${format(selectedDateTime, 'HH:mm')}`}
-              </ButtonCalendarText>
-            </ButtonCalendar>
-          )
-        }
+          {
+            Platform.OS === 'android' && (
+              <ButtonCalendar onPress={handleOpenDateTimePickerForAndroid}>
+                <ButtonCalendarText>
+                  {`Mudar ${format(selectedDateTime, 'HH:mm')}`}
+                </ButtonCalendarText>
+              </ButtonCalendar>
+            )
+          }
 
-        <Button
-          title='Cadastrar Planta'
-          onPress={handleSave}
-        />
+          <Button
+            title='Cadastrar Planta'
+            onPress={handleSave}
+          />
 
-      </Controller>
-    </Container>
+        </Controller>
+      </Container>
+    </ScrollView>
   );
 }

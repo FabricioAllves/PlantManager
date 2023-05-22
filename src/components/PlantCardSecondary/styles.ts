@@ -36,3 +36,16 @@ export const Time = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.heading};
   color: ${({ theme }) => theme.Colors.body_dark};
 `;
+
+export const ButtonRemove = styled(RectButton)`
+  width: 100px;
+  height: 85px;
+  margin-top: 15px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 20px;
+  padding-left: 15px;
+  background-color: ${({ theme }) => theme.Colors.red};
+`;

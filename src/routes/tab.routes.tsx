@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme } from "styled-components";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -18,8 +19,8 @@ export function AuthRoutes() {
         tabBarActiveTintColor: theme.Colors.heading,
         tabBarLabelPosition: 'beside-icon',
         tabBarStyle: {
-          paddingVertical: 20,
-          height: 88
+           paddingVertical: Platform.OS === 'ios' ? 20 : 0,
+           height: Platform.OS === 'ios' ? 88 : 70
         }
       }}
     >
