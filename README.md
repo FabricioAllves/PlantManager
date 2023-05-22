@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Plant Manager" title="Plant Manager" src=".github/logo.png" />
+  <img alt="Plant Manager" title="Plant Manager" src="https://github.com/FabricioAllves/PlantManager/blob/main/assets/Logo1.png" />
 </h1>
 
 <p align="center">
